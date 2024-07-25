@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vucut_kitle_index/screens/years_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,6 +11,19 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isMale1 = false;
   bool _isMale2 = false;
+
+  String? _selectedGender;
+
+  void _handleContinue() {
+    setState(() {
+      if (_isMale1) {
+        _selectedGender = 'Kadın';
+      } else if (_isMale2) {
+        _selectedGender = 'Erkek';
+      }
+    });
+    print('Seçilen cinsiyet $_selectedGender');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +210,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           horizontal: 25.0), // Butonun iç padding'i
                       textStyle: TextStyle(fontSize: 16), // Metin stili
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => YearsScreen()));
+                    },
                     child: Row(
                       mainAxisSize: MainAxisSize
                           .min, // Buton içeriğine göre boyutlandırır
